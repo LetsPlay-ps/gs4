@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAME SHOP · PS4 GoldHEN Host</title>
+  <link rel="icon" type="image/png" href="icon0.png">
+  <link rel="stylesheet" href="host.css">
+</head>
+<body>
+  <main class="host">
+    <header class="host-header">
+      <h1>GAME SHOP</h1>
+      <p class="subtitle">PS4 GoldHEN Host · FW 5.05, 5.07 &amp; 7.00–14.00</p>
+    </header>
+
+    <div class="banner">
+      <img src="gameshop_animated.gif" width="960" height="536" alt="GAME SHOP">
+    </div>
+
+    <section class="controls" aria-label="Jailbreak options">
+      <div class="option">
+        <span>⚙ Exploit Chain</span>
+        <div class="chain-options" id="chains">
+          <span data-chain="auto" class="selected">Auto (Smart)</span>
+          <span data-chain="legacy">5.05</span>
+          <span data-chain="psfree">PSFree</span>
+          <span data-chain="lapse">Lapse</span>
+          <span data-chain="poops">Poops</span>
+          <span data-chain="rthdr">Poops/RTHDR</span>
+          <span data-chain="afterglow">Afterglow</span>
+        </div>
+      </div>
+      <div class="option">
+        <label for="target">Target FW</label>
+        <select id="target">
+          <option value="">Auto Detect</option>
+        </select>
+      </div>
+      <div class="option">
+        <label class="toggle">
+          <input type="checkbox" id="auto-launch" disabled>
+          <span class="slider" aria-hidden="true"></span>
+          Auto Exploit
+        </label>
+        <span class="countdown" id="countdown" hidden></span>
+        <button type="button" class="small-button" id="cancel-auto" hidden>Cancel</button>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button class="launch" id="launch" type="button" disabled>🚀 Start Jailbreak</button>
+      <a class="cache-button" id="install-cache" hidden>Install Offline Cache</a>
+    </div>
+
+    <section class="progress-panel" aria-label="Host status">
+      <div class="progress-heading">
+        <div class="status" role="status"><span aria-hidden="true">⚡</span> <span id="msgs">Detecting your console…</span></div>
+        <span class="percentage" id="progress-value" aria-hidden="true">0%</span>
+      </div>
+      <div class="progress-track" id="progress" role="progressbar" aria-label="Jailbreak progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-fill"></div>
+      </div>
+      <details class="console-drawer">
+        <summary class="small-button">Show / Hide Console Log</summary>
+        <pre id="host-log" class="console-log"></pre>
+      </details>
+    </section>
+
+    <footer>Created by Game Shop Team</footer>
+    <noscript>Enable JavaScript to use the PS4 host.</noscript>
+  </main>
+
+  <!-- Logging hooks used by the existing jailbreak scripts. -->
+  <pre id="console" hidden></pre>
+  <div id="out" hidden></div>
+  <span id="state" hidden></span>
+  <script src="host.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" manifest="css.manifest">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAME SHOP · Offline Cache</title>
+  <link rel="icon" type="image/png" href="icon0.png">
+  <link rel="stylesheet" href="host.css">
+</head>
+<body>
+  <main class="host">
+    <header class="host-header">
+      <h1>GAME SHOP</h1>
+      <p class="subtitle">PS4 GoldHEN Host</p>
+      <span class="badge badge-orange">🎮 FW 10.00–11.02</span>
+      <span class="badge badge-blue">🛡 Offline Cache</span>
+    </header>
+    <div class="banner">
+      <img src="gameshop_animated.gif" width="960" height="536" alt="GAME SHOP">
+    </div>
+    <section class="progress-panel" aria-label="Offline cache installation">
+      <div class="progress-heading">
+        <div class="status" id="msgs" role="status">Starting offline cache installation…</div>
+        <span class="percentage" id="progress-value" aria-hidden="true">0%</span>
+      </div>
+      <div class="progress-track" id="progress" role="progressbar" aria-label="Cache progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-fill"></div>
+      </div>
+    </section>
+    <a class="cache-button" href="index.html">Back to Host</a>
+    <footer><strong>GAME SHOP</strong> · Host files by GamerHack</footer>
+  </main>
+  <script src="cache.js"></script>
+</body>
+</html>

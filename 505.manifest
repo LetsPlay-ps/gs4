@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# GAME SHOP footer update
+
+CACHE:
+./
+index.html
+cache505.html
+host.css
+host.js
+cache.js
+gameshop_animated.gif
+icon0.png
+goldhen_2.4b18.13.bin
+505/exploit.js
+
+NETWORK:
+*
