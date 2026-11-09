@@ -4,10 +4,108 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GAME SHOP · PS4 GoldHEN Host</title>
-  <link rel="icon" type="image/png" href="icon0.png">
   <link rel="stylesheet" href="host.css">
 </head>
 <body>
+<script>
+var uaFull = navigator.userAgent;
+var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
+var isPS4 = match !== null;
+var fwVersion = isPS4 ? match[1] : "Unknown";
+var fwNum = parseFloat(fwVersion);
+
+function onScriptError() {
+    msgs.innerHTML = "Content not Found! - Clear Browser Data and Re-Install Cache ...";
+}
+
+if (!isPS4) {
+    document.addEventListener("DOMContentLoaded", () => {
+        msgs.innerHTML = "Only for PS4 with Firmware 5.05 and 7.00 to 14.00";
+    });
+} else if (!window.applicationCache) {
+    document.addEventListener("DOMContentLoaded", function () {
+        msgs.textContent = "The PS4 browser must support offline cache to use this host.";
+    });
+} else {
+    if (window.applicationCache.status == '0') {
+        if (fwNum == 5.05 || fwNum == 5.07) {
+            window.location.replace("cache505.html");
+        } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+            window.location.replace("cache700.html");
+        } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+            window.location.replace("cache900.html");
+        } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+            window.location.replace("cachecss.html");
+        } else if (fwNum >= 11.50 && fwNum <= 14.00) {
+            window.location.replace("cacheslopkit.html");
+        } else {
+            document.addEventListener("DOMContentLoaded", () => {
+                msgs.innerHTML = 'Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>';
+            });
+        }
+    } else {
+        if (fwNum == 5.05 || fwNum == 5.07) {
+            var script = document.createElement('script');
+            script.src = "505/exploit.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 7.00 && fwNum <= 8.52) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "700/alert.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 9.00 && fwNum <= 9.60) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "900/alert.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 10.00 && fwNum <= 11.02) {
+            var script = document.createElement('script');
+            script.src = "css/main.js";
+            script.onerror = onScriptError;
+            script.onload = function () {
+                setTimeout(function () {
+                    doJb();
+                }, 500);
+            };
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 11.50 && fwNum <= 12.02) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "slopkit/chain_lapse.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 12.50 && fwNum <= 13.00) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "slopkit/chain_poops.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 13.02 && fwNum <= 13.52) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "slopkit/jb.js?v=19";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+		else if (fwNum == 14.00) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "slopkit/jb2.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+    }
+}
+</script>
   <main class="host">
     <header class="host-header">
       <h1>GAME SHOP</h1>
@@ -15,7 +113,7 @@
     </header>
 
     <div class="banner">
-      <img src="gameshop_animated.gif" width="960" height="536" alt="GAME SHOP">
+      <img src="gameshop_still.jpg" data-animated="gameshop_animated.gif" width="960" height="536" alt="GAME SHOP">
     </div>
 
     <section class="controls" aria-label="Jailbreak options">
@@ -35,6 +133,60 @@
         <label for="target">Target FW</label>
         <select id="target">
           <option value="">Auto Detect</option>
+          <optgroup label="Afterglow · 14.00" data-chain="afterglow">
+            <option value="14.00">FW 14.00</option>
+          </optgroup>
+          <optgroup label="Poops / RTHDR · 13.02–13.52" data-chain="rthdr">
+            <option value="13.52">FW 13.52</option>
+            <option value="13.50">FW 13.50</option>
+            <option value="13.04">FW 13.04</option>
+            <option value="13.02">FW 13.02</option>
+          </optgroup>
+          <optgroup label="Poops · 12.50–13.00" data-chain="poops">
+            <option value="13.00">FW 13.00</option>
+            <option value="12.52">FW 12.52</option>
+            <option value="12.50">FW 12.50</option>
+          </optgroup>
+          <optgroup label="Lapse · 11.50–12.02" data-chain="lapse">
+            <option value="12.02">FW 12.02</option>
+            <option value="12.00">FW 12.00</option>
+            <option value="11.52">FW 11.52</option>
+            <option value="11.50">FW 11.50</option>
+          </optgroup>
+          <optgroup label="Lapse · 10.00–11.02" data-chain="lapse">
+            <option value="11.02">FW 11.02</option>
+            <option value="11.00">FW 11.00</option>
+            <option value="10.71">FW 10.71</option>
+            <option value="10.70">FW 10.70</option>
+            <option value="10.50">FW 10.50</option>
+            <option value="10.01">FW 10.01</option>
+            <option value="10.00">FW 10.00</option>
+          </optgroup>
+          <optgroup label="PSFree · 9.00–9.60" data-chain="psfree">
+            <option value="9.60">FW 9.60</option>
+            <option value="9.51">FW 9.51</option>
+            <option value="9.50">FW 9.50</option>
+            <option value="9.04">FW 9.04</option>
+            <option value="9.03">FW 9.03</option>
+            <option value="9.00">FW 9.00</option>
+          </optgroup>
+          <optgroup label="PSFree · 7.00–8.52" data-chain="psfree">
+            <option value="8.52">FW 8.52</option>
+            <option value="8.50">FW 8.50</option>
+            <option value="8.03">FW 8.03</option>
+            <option value="8.01">FW 8.01</option>
+            <option value="8.00">FW 8.00</option>
+            <option value="7.55">FW 7.55</option>
+            <option value="7.51">FW 7.51</option>
+            <option value="7.50">FW 7.50</option>
+            <option value="7.02">FW 7.02</option>
+            <option value="7.01">FW 7.01</option>
+            <option value="7.00">FW 7.00</option>
+          </optgroup>
+          <optgroup label="5.05 Exploit · 5.05–5.07" data-chain="legacy">
+            <option value="5.07">FW 5.07</option>
+            <option value="5.05">FW 5.05</option>
+          </optgroup>
         </select>
       </div>
       <div class="option">
@@ -43,19 +195,16 @@
           <span class="slider" aria-hidden="true"></span>
           Auto Exploit
         </label>
-        <span class="countdown" id="countdown" hidden></span>
-        <button type="button" class="small-button" id="cancel-auto" hidden>Cancel</button>
       </div>
     </section>
 
     <div class="actions">
       <button class="launch" id="launch" type="button" disabled>🚀 Start Jailbreak</button>
-      <a class="cache-button" id="install-cache" hidden>Install Offline Cache</a>
     </div>
 
     <section class="progress-panel" aria-label="Host status">
       <div class="progress-heading">
-        <div class="status" role="status"><span aria-hidden="true">⚡</span> <span id="msgs">Detecting your console…</span></div>
+        <div class="status" role="status"><span aria-hidden="true">⚡</span> <span id="msgs">Loading GoldHEN v2.4b18.13…</span></div>
         <span class="percentage" id="progress-value" aria-hidden="true">0%</span>
       </div>
       <div class="progress-track" id="progress" role="progressbar" aria-label="Jailbreak progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
@@ -71,10 +220,6 @@
     <noscript>Enable JavaScript to use the PS4 host.</noscript>
   </main>
 
-  <!-- Logging hooks used by the existing jailbreak scripts. -->
-  <pre id="console" hidden></pre>
-  <div id="out" hidden></div>
-  <span id="state" hidden></span>
-  <script src="host.js"></script>
+  <script src="ui.js"></script>
 </body>
 </html>

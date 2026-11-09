@@ -8,7 +8,7 @@ function load_script(src, remote = true, transfer = []) {
   });
 }
 
-async function doJb(chain) {
+async function doJb() {
   await load_script("css/misc.js");
 
   try {
@@ -57,7 +57,7 @@ async function doJb(chain) {
       return;
     }
 
-    var exploitChain = chain || localStorage.getItem("exploitChain") || "lapse";
+    var exploitChain = localStorage.getItem("exploitChain") || "lapse";
     await load_script("css/" + exploitChain + ".js");
     logger.info("===" + exploitChain.toUpperCase() + "===");
 

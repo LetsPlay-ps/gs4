@@ -1,16 +1,14 @@
 CACHE MANIFEST
-# GAME SHOP footer update
+# GS4 interface with GamerHack G2All runtime
 
 CACHE:
 ./
-index.html
 cache505.html
 host.css
-host.js
-cache.js
-gameshop_animated.gif
-icon0.png
+ui.js
+gameshop_still.jpg
 goldhen_2.4b18.13.bin
+index.html
 505/exploit.js
 
 NETWORK:

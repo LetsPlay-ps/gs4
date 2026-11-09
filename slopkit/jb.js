@@ -332,9 +332,6 @@ let allDone = false,
       mark("AUTO-RELOAD", "why=" + why + " reload=" + (n + 1) + "/" + RETRY_MAX);
       setTimeout(() => {
         try {
-          history.replaceState("g2all:retry", "");
-        } catch (e) {}
-        try {
           location.reload();
         } catch (e) {}
       }, 400);
